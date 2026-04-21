@@ -216,12 +216,16 @@
       };
 
       const selectNumber = (num, index) => {
-        if (selectedNumbers.length >= 2) return;
         if (selectedNumbers.some(s => s.index === index)) {
           setSelectedNumbers(selectedNumbers.filter(s => s.index !== index));
-        } else {
-          setSelectedNumbers([...selectedNumbers, { value: num, index }]);
+          return;
         }
+
+        if (selectedNumbers.length >= 2) {
+          return;
+        }
+
+        setSelectedNumbers([...selectedNumbers, { value: num, index }]);
       };
 
       const selectOperationFromBank = (op) => {
